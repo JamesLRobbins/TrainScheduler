@@ -2,3 +2,18 @@
     background: #3d64f2;
     color: white;
 }
+
+.jumbotron {
+    text-align: center;
+    background: black;
+    color: white;
+    font-weight: bold;
+}
+
+table { 
+    width: 100%;
+    border-collapse:collapse; 
+}
+table thead th { 
+    border-bottom: 1px solid #aeb3bd; 
+}
