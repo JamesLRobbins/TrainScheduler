@@ -20,8 +20,10 @@ $("#submit-button").on("click", function(event) {
   // Grabs user input
   var trainName = $("#trainName").val().trim();
   var destination = $("#destination").val().trim();
-  var trainStart = moment($("#first-train-time").val().trim(), "HH:mm").subtract(10, "years").format("X");
+  var trainStart = $("#first-train-time").val().trim();
   var frequency = $("#frequency").val().trim();
+
+  if (trainName != "" && destination != "" && trainStart.length === 4 && frequency != "") {
 
   // Creates local "temporary" object for holding employee data
   var newTrain = {
@@ -34,6 +36,10 @@ $("#submit-button").on("click", function(event) {
 
   // Uploads employee data to the database
   database.ref().push(newTrain);
+
+} else {
+  alert("Please enter valid information to continue!")
+}
 
   // Logs everything to console
   console.log(newTrain.trainName);
@@ -67,7 +73,9 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log("Frequency " + frequency);
 
   //Converted Time
-  var remainder = moment().diff(moment.unix(trainStart), "minutes") % frequency;
+  var trainStartConverted = moment(childSnapshot.val().trainStart, "hh:mm").subtract(1, "years");
+  var timeDiff = moment().diff(moment(trainStartConverted), "minutes");
+  var remainder = timeDiff % childSnapshot.val().frequency;
   var minAway = frequency - remainder;
 
   var arrival = moment().add(minAway, "m").format("hh:mm A");
