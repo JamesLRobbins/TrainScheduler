@@ -1,6 +1,11 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .card-header {
     background: #3d64f2;
     color: white;
+    font-weight: bold;
 }
 
 .jumbotron {
@@ -8,7 +13,8 @@
     background: #3d64f2;
     color: white;
     font-weight: bold;
-}
+    border-radius: 0 0 4px 4px;
+}    
 
 table { 
     width: 100%;
@@ -16,4 +22,8 @@ table {
 }
 table thead th { 
     border-bottom: 1px solid #aeb3bd; 
+}
+
+thead {
+    font-weight: bold;
 }
